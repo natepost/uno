@@ -3,7 +3,7 @@ class PipelinesController < ApplicationController
                                   [:show, :edit, :update, :destroy]
 
   def index
-    @pipelines = Pipeline.all.order("created_at DESC")
+    @pipeline = Pipeline.all.order("created_at DESC")
   end
 
   def show
@@ -26,7 +26,7 @@ class PipelinesController < ApplicationController
   private
 
   def pipeline_params
-    params.requires(:pipeline).permit(:title, :description)
+    params.require(:pipeline).permit(:title, :description)
   end
 
   def find_pipeline

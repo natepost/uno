@@ -3,7 +3,7 @@ class PipelinesController < ApplicationController
                                   [:show, :edit, :update, :destroy]
 
   def index
-    @pipeline = Pipeline.all.order("created_at DESC")
+    @pipelines = Pipeline.all.order("created_at DESC")
   end
 
   def show
@@ -13,6 +13,7 @@ class PipelinesController < ApplicationController
     @pipeline = Pipeline.new
   end
 
+
   def create
     @pipeline = Pipeline.new(pipeline_params)
 
@@ -21,6 +22,22 @@ class PipelinesController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def edit
+  end
+
+  def update
+  if @pipeline.update(pipeline_params)
+      redirect_to @pipeline
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @pipeline.destroy
+    redirect_to root_path
   end
 
   private
